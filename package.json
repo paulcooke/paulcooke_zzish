@@ -5,6 +5,9 @@
   "repository": "git@github.com:paulcooke/paulcooke_zzish.git",
   "author": "Paul Cooke <paulgfcooke@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "seed": "node db/seeds.js"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.8.1"
