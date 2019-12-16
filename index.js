@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+const bodyParser = require('body-parser')
 
+const router = require('./config/router')
 const { port, dbURI } = require('./config/environment')
 
 
@@ -9,8 +11,14 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
   () => console.log('Mongo is connected')
 )
 
+// body parser first
+app.use(bodyParser.json())
 
+app.use('/', router)
+
+// catch all
+app.use('/*', (req, res) => res.status(404).json({ message: 'Not Found' }))
 
 app.listen(port, () => console.log(`Up and running on port ${port}`))
 
-
+module.exports = app
