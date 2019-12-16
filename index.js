@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const bodyParser = require('body-parser')
+const logger = require('./lib/logger')
 
 const router = require('./config/router')
 const { port, dbURI } = require('./config/environment')
@@ -13,6 +14,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
 
 // body parser first
 app.use(bodyParser.json())
+
+// logger middleware to show the incoming request
+app.use(logger)
 
 app.use('/', router)
 

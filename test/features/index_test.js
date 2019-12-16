@@ -27,4 +27,15 @@ describe('GET /features', () => {
       })
   })
 
+  it('should return an array of strings)', done => {
+    api.get('/features')
+      .send(testUserEd)
+      .end((err, res) => {
+        res.body.forEach(feature => {
+          expect(feature).to.be.a('string')
+        })
+        done()
+      })
+  })
+
 })
