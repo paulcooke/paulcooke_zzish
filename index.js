@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 // logger middleware to show the incoming request
 app.use(logger)
 
+// router middleware
 app.use('/', router)
 
 // catch all

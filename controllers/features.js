@@ -1,5 +1,7 @@
 const Feature = require('../models/feature')
 
+// return all 'eligible' features, and then apply the relevant ratio to those without an enabled email address
+// for the response to be an array of strings, map the objects to feature.name
 function index(req, res, next) {
   Feature
     .find({
