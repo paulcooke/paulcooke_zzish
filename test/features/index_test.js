@@ -8,6 +8,11 @@ const testUserEd = {
   "location": "GB"
 }
 
+const testUserNew = {
+  "email": "monica@zzish.com",
+  "location": "GB"
+}
+
 describe('GET /features', () => {
   it('should return a 200 response', done => {
     api.get('/features')
@@ -34,6 +39,16 @@ describe('GET /features', () => {
         res.body.forEach(feature => {
           expect(feature).to.be.a('string')
         })
+        done()
+      })
+  })
+
+  // can use ed to test for enableEmails as he isnt aligible for any of the other ones (where his email isn't enabled) due to included and excluded countries 
+  it('should return supercool feature and simplified nav bar when we send it the user Ed', done => {
+    api.get('/features')
+      .send(testUserEd)
+      .end((err, res) => {
+        expect(res.body).to.be.an('array').that.eql(['SuperCoolFeature', 'SimplifiedNavBar'])
         done()
       })
   })
